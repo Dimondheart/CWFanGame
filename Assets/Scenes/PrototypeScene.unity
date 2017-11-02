@@ -112,6 +112,49 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &352889620
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 352889621}
+  - component: {fileID: 352889622}
+  m_Layer: 0
+  m_Name: Surface
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &352889621
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 352889620}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1714314497}
+  m_Father: {fileID: 1156144031}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &352889622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 352889620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c74d9bd55962de46be4ba72f6ce89f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  terrainLayer: {fileID: 1714314498}
+  terrainDrawer: {fileID: 1714314499}
 --- !u!1 &1043780854
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,6 +243,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1156144031}
+  - component: {fileID: 1156144032}
   m_Layer: 0
   m_Name: Map
   m_TagString: Untagged
@@ -217,10 +261,22 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1714314497}
+  - {fileID: 352889621}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1156144032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1156144030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ce1ad3a92edaff448b5096fc972dc0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  surfaceLayerGroup: {fileID: 352889622}
 --- !u!1 &1714314496
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,8 +285,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1714314497}
+  - component: {fileID: 1714314498}
+  - component: {fileID: 1714314499}
   m_Layer: 0
-  m_Name: Terrain Tiles
+  m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -242,10 +300,43 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1714314496}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1156144031}
+  m_Father: {fileID: 352889621}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1714314498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1714314496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3962fd02e9dc20142a5b0d79c6f765d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1714314499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1714314496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cca8cac30cfb55a4db8e0c0d5a358d4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  terrain1: {fileID: 1305465726127894, guid: 1ce3f4a6153bd4447bb3e0cc487b5a71, type: 2}
+  terrain2: {fileID: 1239673499187688, guid: ba528ad481bea1240be7681d83557904, type: 2}
+  terrain3: {fileID: 1151673028877352, guid: 65679fd622620b44e96183b905b8b8a3, type: 2}
+  terrain4: {fileID: 1103437041514630, guid: 432708c78eb007e40bf6624b7b27d93d, type: 2}
+  terrain5: {fileID: 1846704029515576, guid: e239160995e01e94da8c711c88b1edf6, type: 2}
+  terrain6: {fileID: 1902354185631596, guid: eb6a5e80b0cfa5d44b2598ce33d46cb5, type: 2}
+  terrain7: {fileID: 1524640500532562, guid: 3a7fe6ac6f701c642a663a4ce47d5930, type: 2}
+  terrain8: {fileID: 1399257189526472, guid: f082054e59fc2394f8a983573f82177c, type: 2}
+  terrain9: {fileID: 1655867479979544, guid: 62758f3f481fa1e4cb937f5e199664f3, type: 2}
+  terrain10: {fileID: 1358112992649328, guid: 766bf0438a625d943abc06b1dc12cc43, type: 2}
+  terrainLayer: {fileID: 1714314498}
