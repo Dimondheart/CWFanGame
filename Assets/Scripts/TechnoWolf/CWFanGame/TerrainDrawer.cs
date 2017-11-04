@@ -35,11 +35,6 @@ namespace TechnoWolf.CWFanGame
 		/**<summary>GameObjects for each tile game object that renders a tile.</summary>*/
 		private GameObject[,] terrainTiles = null;
 
-		public void Start()
-		{
-			Setup();
-		}
-
 		public void Update()
 		{
 			UpdateTiles();

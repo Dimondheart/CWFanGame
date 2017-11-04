@@ -12,7 +12,7 @@ namespace TechnoWolf.CWFanGame
 
 		public void Awake()
 		{
-			surfaceLayerGroup.Setup(4, 5, 0);
+			surfaceLayerGroup.Setup(21, 21, 1);
 		}
 	}
 }
