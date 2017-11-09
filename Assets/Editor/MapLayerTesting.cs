@@ -380,5 +380,7 @@ public class MapLayerTesting
 		}
 	}
 
+	// TODO test neutralizing two layers
+
 	// TODO test fluid motion simulation
 }

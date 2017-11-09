@@ -53,9 +53,9 @@ namespace TechnoWolf.CWFanGame
 				for (int y = 0; y < fluidLayer.Height; y++)
 				{
 					SpriteRenderer sr = fluidTiles[x, y].GetComponent<SpriteRenderer>();
-					if (fluidLayer.depth[x, y] > 0.001f)
+					if (fluidLayer.depth[x, y] > 0.0049f)
 					{
-						sr.color = Color.Lerp(min, max, Mathf.Clamp(fluidLayer.depth[x, y], 0.0f, 10.0f) / 10.0f);
+						sr.color = Color.Lerp(min, max, Mathf.Clamp((int)fluidLayer.depth[x, y], 0.0f, 20.0f) / 20.0f);
 					}
 					else
 					{

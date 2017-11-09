@@ -60,6 +60,10 @@ namespace TechnoWolf.CWFanGame
 				0.1f,
 				Time.fixedDeltaTime
 				);
+			waterLayer.ApplyDeltaDepths();
+			creeperLayer.ApplyDeltaDepths();
+			antiCreeperLayer.ApplyDeltaDepths();
+			MapLayer.NeutralizeLayers(creeperLayer, antiCreeperLayer);
 		}
 
 		/**<summary>Setup the group and the layers.</summary>

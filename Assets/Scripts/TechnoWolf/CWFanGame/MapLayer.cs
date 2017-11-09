@@ -60,9 +60,33 @@ namespace TechnoWolf.CWFanGame
 			return result;
 		}
 
-		public void FixedUpdate()
+		public static void NeutralizeLayers(MapLayer layer1, MapLayer layer2)
 		{
-			ApplyDeltaDepths();
+			for (int x = 0; x < layer1.Width; x++)
+			{
+				for (int y = 0; y < layer1.Height; y++)
+				{
+					float l1Depth = layer1.depth[x, y];
+					float l2Depth = layer2.depth[x, y];
+					if (l1Depth > l2Depth)
+					{
+						l1Depth -= l2Depth;
+						l2Depth = 0.0f;
+					}
+					else if (l1Depth < l2Depth)
+					{
+						l2Depth -= l1Depth;
+						l1Depth = 0.0f;
+					}
+					else
+					{
+						l1Depth = 0.0f;
+						l2Depth = 0.0f;
+					}
+					layer1.depth[x, y] = l1Depth;
+					layer2.depth[x, y] = l2Depth;
+				}
+			}
 		}
 
 		/**<summary>Clear the layer, setting all tile depths to the same
@@ -155,6 +179,7 @@ namespace TechnoWolf.CWFanGame
 					}
 				}
 			}
+			ApplyDeltaDepths();
 		}
 
 		/**<summary>Calculate the amount of fluid movement at and around a
