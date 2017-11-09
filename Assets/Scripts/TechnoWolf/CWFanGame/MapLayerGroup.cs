@@ -17,6 +17,11 @@ namespace TechnoWolf.CWFanGame
 		public MapLayer creeperLayer;
 		/**<summary>The layer for anti-creeper.</summary>*/
 		public MapLayer antiCreeperLayer;
+		/**<summary>The maximum total depth of the group from the bottom of
+		 * the terrain layer to the top of the top-most layer. Setting to
+		 * positive infinity disables the ceiling (unrestricted layer height.)</summary>
+		 */
+		public float ceilingHeight = float.PositiveInfinity;
 		/**<summary>What draws the terrain layer for this group.</summary>*/
 		public TerrainDrawer terrainDrawer;
 		/**<summary>What draws the water layer.</summary>*/
@@ -90,7 +95,8 @@ namespace TechnoWolf.CWFanGame
 					e.GetComponent<BasicEmitter>().amount = 200.0f;
 					e.GetComponent<BasicEmitter>().interval = 4.0f;
 					e.GetComponent<BasicEmitter>().delay = 2.0f;
-					e.GetComponent<BasicEmitter>().emitIntoLayer = waterLayer;
+					e.GetComponent<BasicEmitter>().emitIntoGroup = this;
+					e.GetComponent<BasicEmitter>().emitIntoLayer = LayerType.Water;
 					e.GetComponent<SpriteRenderer>().color = waterEmitterColor;
 					break;
 				case 1:
@@ -99,21 +105,24 @@ namespace TechnoWolf.CWFanGame
 					e.GetComponent<BasicEmitter>().amount = 20.0f;
 					e.GetComponent<BasicEmitter>().interval = 2.0f;
 					e.GetComponent<BasicEmitter>().delay = 1.0f;
-					e.GetComponent<BasicEmitter>().emitIntoLayer = waterLayer;
+					e.GetComponent<BasicEmitter>().emitIntoGroup = this;
+					e.GetComponent<BasicEmitter>().emitIntoLayer = LayerType.Water;
 					e.GetComponent<SpriteRenderer>().color = waterEmitterColor;
 					e = Instantiate(emitter, transform) as GameObject;
 					e.transform.localPosition = new Vector3(4.0f, 4.0f, 0.0f);
 					e.GetComponent<BasicEmitter>().amount = 20.0f;
 					e.GetComponent<BasicEmitter>().interval = 1.0f;
 					e.GetComponent<BasicEmitter>().delay = 1.0f;
-					e.GetComponent<BasicEmitter>().emitIntoLayer = creeperLayer;
+					e.GetComponent<BasicEmitter>().emitIntoGroup = this;
+					e.GetComponent<BasicEmitter>().emitIntoLayer = LayerType.Creeper;
 					e.GetComponent<SpriteRenderer>().color = creeperEmitterColor;
 					e = Instantiate(emitter, transform) as GameObject;
 					e.transform.localPosition = new Vector3(4.0f, 5.0f, 0.0f);
 					e.GetComponent<BasicEmitter>().amount = 20.0f;
 					e.GetComponent<BasicEmitter>().interval = 1.0f;
 					e.GetComponent<BasicEmitter>().delay = 1.0f;
-					e.GetComponent<BasicEmitter>().emitIntoLayer = antiCreeperLayer;
+					e.GetComponent<BasicEmitter>().emitIntoGroup = this;
+					e.GetComponent<BasicEmitter>().emitIntoLayer = LayerType.AntiCreeper;
 					e.GetComponent<SpriteRenderer>().color = antiCreeperEmitterColor;
 					terrainLayer.depth[10, 0] = 10.0f;
 					terrainLayer.depth[10, 1] = 10.0f;
@@ -145,6 +154,23 @@ namespace TechnoWolf.CWFanGame
 				default:
 					break;
 			}
+		}
+
+		/**<summary>The standard layers in a layer group. All map layer groups
+		 * contain exactly one layer for each layer type.</summary>
+		 */
+		public enum LayerType : byte
+		{
+			/**<summary>Non-fluid layer below all other layers.</summary>*/
+			Terrain = 0,
+			/**<summary>Simple fluid just above the terrain layer.</summary>*/
+			Water,
+			/**<summary>Creeper fluid layer, just above the water layer.</summary>*/
+			Creeper,
+			/**<summary>Anti-Creeper fluid layer, is at the same height as
+			 * the Creeper layer.</summary>
+			 */
+			AntiCreeper
 		}
 	}
 }

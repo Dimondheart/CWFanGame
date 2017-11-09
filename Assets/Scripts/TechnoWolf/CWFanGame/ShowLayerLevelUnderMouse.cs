@@ -29,6 +29,11 @@ namespace TechnoWolf.CWFanGame
 
 		public void Update()
 		{
+			levelText.enabled = layer.GetComponentInChildren<SpriteRenderer>().enabled;
+			if (!levelText.enabled)
+			{
+				return;
+			}
 			Vector3 position = GameObject.FindGameObjectWithTag("MainCamera")
 				.GetComponent<Camera>()
 				.ScreenToWorldPoint(Input.mousePosition);
