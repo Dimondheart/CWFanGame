@@ -5,7 +5,7 @@ using UnityEngine;
 namespace TechnoWolf.CWFanGame
 {
 	/**<summary>Basic emitter which adds/generates depth into a single layer.</summary>*/
-	public class TestEmitter : MonoBehaviour
+	public class BasicEmitter : MonoBehaviour
 	{
 		/**<summary>Time (in seconds) between when this emitter is enabled
 		 * and the first emission.</summary>

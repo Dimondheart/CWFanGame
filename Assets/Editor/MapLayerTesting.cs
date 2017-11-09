@@ -5,7 +5,7 @@ using NUnit.Framework;
 using System.Collections;
 using TechnoWolf.CWFanGame;
 
-public class MapLayerTests
+public class MapLayerTesting
 {
 	/**<summary>Get a new non-mock MapLayer for testing, and attach it
 	 * to the specified GameObject (creates a new GameObject if one is not
