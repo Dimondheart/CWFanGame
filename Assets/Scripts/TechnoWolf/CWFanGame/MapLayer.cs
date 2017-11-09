@@ -136,10 +136,6 @@ namespace TechnoWolf.CWFanGame
 						continue;
 					}
 					float[,] fluidDeltas = CalculateFluidMotion(x, y, data);
-					if (x == 0 && y == 0)
-					{
-						//Debug.Log(fluidDeltas[0, 1] + fluidDeltas[1, 0] + fluidDeltas[1, 2] + fluidDeltas[2, 1]);
-					}
 					deltaDepth[x, y] += fluidDeltas[1, 1];
 					if (x > 0 && fluidDeltas[0, 1] != 0.0f)
 					{

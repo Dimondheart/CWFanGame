@@ -15,18 +15,25 @@ namespace TechnoWolf.CWFanGame
 		public MapLayer waterLayer;
 		/**<summary>The layer for creeper.</summary>*/
 		public MapLayer creeperLayer;
+		/**<summary>The layer for anti-creeper.</summary>*/
+		public MapLayer antiCreeperLayer;
 		/**<summary>What draws the terrain layer for this group.</summary>*/
 		public TerrainDrawer terrainDrawer;
 		/**<summary>What draws the water layer.</summary>*/
 		public FluidDrawer waterDrawer;
 		/**<summary>What draws the creeper layer.</summary>*/
 		public FluidDrawer creeperDrawer;
+		/**<summary>What draws the anti-creeper layer.</summary>*/
+		public FluidDrawer antiCreeperDrawer;
 		/**<summary>Emitter prefab for testing purposes.</summary>*/
 		public GameObject emitter;
 		/**<summary>Color of an emitter putting out water.</summary>*/
 		public Color waterEmitterColor = Color.cyan;
 		/**<summary>Color of an emitter putting out creeper.</summary>*/
 		public Color creeperEmitterColor = Color.blue;
+		/**<summary></summary>*/
+		public Color antiCreeperEmitterColor =
+			new Color(176.0f / 255.0f, 224.0f / 255.0f, 230.0f / 255.0f);
 
 		public void FixedUpdate()
 		{
@@ -42,6 +49,12 @@ namespace TechnoWolf.CWFanGame
 				0.1f,
 				Time.fixedDeltaTime
 				);
+			antiCreeperLayer.SimulateFluidMotion(
+				terrainLayer,
+				MapLayer.CalculateTotalDepths(terrainLayer, waterLayer, antiCreeperLayer),
+				0.1f,
+				Time.fixedDeltaTime
+				);
 		}
 
 		/**<summary>Setup the group and the layers.</summary>
@@ -54,10 +67,12 @@ namespace TechnoWolf.CWFanGame
 			terrainLayer.ResizeAndClear(width, height, 4.0f);
 			waterLayer.ResizeAndClear(width, height, 0.0f);
 			creeperLayer.ResizeAndClear(width, height, 0.0f);
+			antiCreeperLayer.ResizeAndClear(width, height, 0.0f);
 			SetupDummyMap(dummyMap);
 			terrainDrawer.Setup();
 			waterDrawer.Setup();
 			creeperDrawer.Setup();
+			antiCreeperDrawer.Setup();
 		}
 
 		/**<summary>Configure the layers according to a dummy/test
@@ -93,6 +108,13 @@ namespace TechnoWolf.CWFanGame
 					e.GetComponent<TestEmitter>().delay = 1.0f;
 					e.GetComponent<TestEmitter>().emitIntoLayer = creeperLayer;
 					e.GetComponent<SpriteRenderer>().color = creeperEmitterColor;
+					e = Instantiate(emitter, transform) as GameObject;
+					e.transform.localPosition = new Vector3(4.0f, 5.0f, 0.0f);
+					e.GetComponent<TestEmitter>().amount = 20.0f;
+					e.GetComponent<TestEmitter>().interval = 1.0f;
+					e.GetComponent<TestEmitter>().delay = 1.0f;
+					e.GetComponent<TestEmitter>().emitIntoLayer = antiCreeperLayer;
+					e.GetComponent<SpriteRenderer>().color = antiCreeperEmitterColor;
 					terrainLayer.depth[10, 0] = 10.0f;
 					terrainLayer.depth[10, 1] = 10.0f;
 					terrainLayer.depth[10, 2] = 10.0f;

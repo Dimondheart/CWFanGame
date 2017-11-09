@@ -5,13 +5,21 @@ using UnityEngine.UI;
 
 namespace TechnoWolf.CWFanGame
 {
-	/**<summary></summary>*/
+	/**<summary>Show the level of a layer under the mouse cursor, both the
+	 * individual layer depth and the depth including lower layers.</summary>
+	 */
 	public class ShowLayerLevelUnderMouse : MonoBehaviour
 	{
+		/**<summary>The UI element to show the text in.</summary>*/
 		public Text levelText;
+		/**<summary>The layer to show depth for.</summary>*/
 		public MapLayer layer;
+		/**<summary>Layers below the layer this script is showing depth for,
+		 * in order to calculate the total height.</summary>
+		 */
 		public MapLayer[] lowerLayers;
 
+		/**<summary>Prefix string, taken from the initial text of the UI element.</summary>*/
 		private string prefix;
 
 		public void Start()
